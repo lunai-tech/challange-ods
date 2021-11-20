@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FiapChallange.Lunai.Domain\FiapChallange.Lunai.Domain.csproj" />
+    <ProjectReference Include="..\FiapChallange.Lunai.InfraData\FiapChallange.Lunai.InfraData.csproj" />
+  </ItemGroup>
+
+</Project>
