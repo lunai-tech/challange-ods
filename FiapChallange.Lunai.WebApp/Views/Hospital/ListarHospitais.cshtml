@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Hospitais";
+}
+
+<div class="header-large-title">
+    <h1 class="title">@ViewData["Title"]</h1>
+    <h4 class="subtitle">Hospitais credenciados:</h4>
+</div>
+
+
+
+<div class="section mt-3">
+    <div class="row">
+        
+        <div class="col-sm-3 p-1">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">UBS Assas</h5>
+                    <p class="card-text">
+                        Endereço: Rua Fulano de tal, 425, Parque Alexandre, Cotia, SP
+                    </p>
+                    <p class="card-text">
+                        Aberto!
+                    </p>
+                    <a href="@Url.Action("ListarHospitais","Hospital")" class="btn btn-primary">
+                        <ion-icon name="search-outline"></ion-icon>
+                        Marcar consulta!
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 p-1">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">UBS Assas</h5>
+                    <p class="card-text">
+                        Endereço: Rua Fulano de tal, 425, Parque Alexandre, Cotia, SP
+                    </p>
+                    <p class="card-text">
+                        Aberto!
+                    </p>
+                    <a href="@Url.Action("ListarHospitais","Hospital")" class="btn btn-primary">
+                        <ion-icon name="search-outline"></ion-icon>
+                        Marcar consulta!
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

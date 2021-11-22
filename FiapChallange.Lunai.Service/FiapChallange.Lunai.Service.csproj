@@ -9,4 +9,9 @@
     <ProjectReference Include="..\FiapChallange.Lunai.InfraData\FiapChallange.Lunai.InfraData.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Validators\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

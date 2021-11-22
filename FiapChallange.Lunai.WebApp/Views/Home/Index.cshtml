@@ -9,24 +9,7 @@
 
 <div class="section mt-3">
     <div class="row justify-content-center">
-       
-        <div class="col-sm-3 p-1">
-            <div class="card">
-                <img src="~/imgs/medico.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">Atendimento Especializado</h5>
-                    <p class="card-text">
-                        Profissionais da saúde próximos!
-                    </p>
-                    <a href="app-components.html" class="btn btn-primary">
-                        <ion-icon name="search-outline"></ion-icon>
-                        Pesquisar
-                    </a>
-                </div>
-            </div>
-        </div>
 
-        
         <div class="col-sm-3 p-1">
             <div class="card">
                 <img src="~/imgs/hospital.jpg" class="card-img-top">
@@ -35,7 +18,7 @@
                     <p class="card-text">
                         Hospitais publicos e privados próximos!
                     </p>
-                    <a href="app-components.html" class="btn btn-primary">
+                    <a href="@Url.Action("ListarHospitais","Hospital")" class="btn btn-primary">
                         <ion-icon name="search-outline"></ion-icon>
                         Pesquisar
                     </a>
@@ -43,7 +26,22 @@
             </div>
         </div>
 
-       
+
+        <div class="col-sm-3 p-1">
+            <div class="card">
+                <img src="~/imgs/medico.jpg" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Atendimento Especializado</h5>
+                    <p class="card-text">
+                        Profissionais da saúde próximos!
+                    </p>
+                    <a href="#" class="btn btn-primary">
+                        <ion-icon name="search-outline"></ion-icon>
+                        Pesquisar
+                    </a>
+                </div>
+            </div>
+        </div>
 
         <div class="col-sm-3 p-1">
             <div class="card">
@@ -53,7 +51,7 @@
                     <p class="card-text">
                         Onde e quando me vacinar?
                     </p>
-                    <a href="app-components.html" class="btn btn-primary">
+                    <a href="#" class="btn btn-primary">
                         <ion-icon name="search-outline"></ion-icon>
                         Me mostre
                     </a>

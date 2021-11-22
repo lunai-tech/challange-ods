@@ -622,6 +622,7 @@ function offlineMode() {
     if (document.body.contains(check)) {
         check.classList.remove("show")
     }
+    console.log('Regando Geolocalizacao');
     offlineModeToast();
     var toast = document.getElementById("offline-toast")
     toast.addEventListener("click", function () {
