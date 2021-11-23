@@ -34,15 +34,174 @@
                                 <ion-icon name="close-circle-outline"></ion-icon> Fechado!
                             </p>
                         }
+
+
                         <p class="card-text"><ion-icon name="call-outline"></ion-icon> Telefone: @item.TelefoneContato</p>
                         <p class="card-text"><ion-icon name="medkit-outline"></ion-icon> @item.TipoInstituicao</p>
-                        <a href="@Url.Action("Index","MarcarConsulta",new {idHospital = item.IdHospital })" class="btn btn-primary">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#DialogForm_@item.IdHospital.ToString()">
                             <ion-icon name="search-outline"></ion-icon>
                             Marcar consulta!
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
+
+            <!-- Dialog Form -->
+            <div class="modal fade dialogbox" id="DialogForm_@item.IdHospital.ToString()" data-bs-backdrop="static" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Dados para consulta:</h5>
+                        </div>
+                        <form onchange="validateForm('@item.IdHospital')" id="form_@item.IdHospital">
+                            <div class="modal-body text-start mb-2">
+                                <p>Hospital: @item.NomeHospital</p>
+                                <p>Endereço: @item.Endereco</p>
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label class="form-label" for="nome">Nome completo:</label>
+                                        <input type="text" class="form-control" id="nomeCompleto_@item.IdHospital" placeholder="Ex: Fulano de Tal" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label class="form-label" for="document">CPF ou RG:</label>
+                                        <input type="text" class="form-control" id="documento_@item.IdHospital" placeholder="Ex: 00000000000" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label class="form-label" for="dataNasicmento">Data de nacimento:</label>
+                                        <input type="date" class="form-control" id="dataNascimento_@item.IdHospital" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label class="form-label" for="horarioConsulta">Horarios disponiveis: </label>
+                                        <select class="form-control form-select" id="horarioConsulta_@item.IdHospital" required>
+                                            <option value="">-</option>
+                                            @foreach (var horario in item.HorarioDisponiveis)
+                                            {
+                                                <option value="@horario">@horario</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <div class="btn-inline">
+                                    <button type="button" class="btn btn-text-secondary"
+                                            data-bs-dismiss="modal">
+                                        Cancelar
+                                    </button>
+                                    <button type="button" class="btn btn-text-primary" onclick="marcarConsulta('@item.IdHospital')" id="Button" data-bs-dismiss="modal" disabled>
+                                        Marcar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- * Dialog Form -->
         }
     </div>
 </div>
+
+
+<!-- DialogIconedSuccess -->
+<button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+        data-bs-target="#DialogIconedSuccess" hidden id="sucessoModalButton">
+    Success
+</button>
+<div class="modal fade dialogbox" id="DialogIconedSuccess" data-bs-backdrop="static" tabindex="-1"
+     role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-icon text-success">
+                <ion-icon name="checkmark-circle"></ion-icon>
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title">Marcada!</h5>
+            </div>
+            <div class="modal-body">
+                Sua consulta foi marcada com sucesso!
+            </div>
+            <div class="modal-footer">
+                <div class="btn-inline">
+                    <a href="#" class="btn" data-bs-dismiss="modal">Fechar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- * DialogIconedSuccess -->
+
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+    function marcarConsulta(id) {
+        console.log(id)
+
+        var nomeCompleto = document.getElementById("nomeCompleto_" + id).value;
+        var documento = document.getElementById("documento_" + id).value;
+        var dataNascimento = document.getElementById("dataNascimento_" + id).value;
+        var horario = document.getElementById("horarioConsulta_" + id).value;
+
+
+        var consulta = new Object();
+        consulta.documento = documento
+        consulta.nome_completo = nomeCompleto
+        consulta.data_nascimento = dataNascimento
+        consulta.horario_consulta = horario
+        consulta.id_hospital = id
+
+        $.ajax({
+            type: "POST",
+            url: "/Consulta/MarcarConsulta",
+            data: JSON.stringify(consulta),
+            contentType: "application/json; charset=utf-8",
+            dataType: "text",
+            success: function (response) {
+                console.log('Deu boa')
+                document.getElementById("sucessoModalButton").click();
+            },
+            failure: function (response) {
+                console.log('Falho')
+            },
+            error: function (response) {
+                console.log("Deu ruim")
+            }
+        });
+
+    }
+
+
+    function validateForm(idHospital) {
+        const formHtml = document.getElementById('form_' + idHospital);
+        if (checkform(formHtml)) {
+            document.getElementById("Button").disabled = false;
+        }
+        else {
+            document.getElementById("Button").disabled = true;
+        }
+    }
+
+    function checkform(form) {
+        // get all the inputs within the submitted form
+        var inputs = form.getElementsByTagName('input');
+        for (var i = 0; i < inputs.length; i++) {
+            // only validate the inputs that have the required attribute
+            if (inputs[i].hasAttribute("required")) {
+                if (inputs[i].value == "") {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+</script>
