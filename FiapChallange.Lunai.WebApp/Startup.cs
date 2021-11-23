@@ -1,3 +1,8 @@
+using FiapChallange.Lunai.Domain.Interfaces;
+using FiapChallange.Lunai.InfraData.Context;
+using FiapChallange.Lunai.InfraData.Repository;
+using FiapChallange.Lunai.Service.Interfaces;
+using FiapChallange.Lunai.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +29,9 @@ namespace FiapChallange.Lunai
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<MysqlContext, MysqlContext>();
+            services.AddTransient<IHospitalRepository, HospitalRepository>();
+            services.AddTransient<IHospitalService, HospitalService>();
 
             services.AddHttpContextAccessor();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();

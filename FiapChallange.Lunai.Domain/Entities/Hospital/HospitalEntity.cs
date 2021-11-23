@@ -6,6 +6,11 @@ namespace FiapChallange.Lunai.Domain.Entities
 {
     public class HospitalEntity
     {
+        public HospitalEntity()
+        {
+            this.IdHospital = Guid.NewGuid();
+        }
+
         public Guid IdHospital { get; set; }
         public string Nome { get; set; }
         public string TelefoneContato { get; set; }

@@ -1,25 +1,22 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FiapChallange.Lunai.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace FiapChallange.Lunai.WebApp.Controllers
 {
     public class HospitalController : Controller
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IHospitalService _hospitalService;
 
-
-        public HospitalController(IHttpContextAccessor httpContextAccessor)
+        public HospitalController(IHospitalService hospitalService)
         {
-            _httpContextAccessor = httpContextAccessor;
+            _hospitalService = hospitalService;
         }
 
         public ActionResult ListarHospitais()
         {
-            return View();
+            var listaHospitais = _hospitalService.ListarHospitais();
+            return View(listaHospitais);
         }    
     }
 }
