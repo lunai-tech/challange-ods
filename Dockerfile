@@ -11,7 +11,8 @@ RUN dotnet restore ./FiapChallange.Lunai.WebApp/FiapChallange.Lunai.csproj
 
 # Build da aplicacao
 COPY . ./
-RUN dotnet build -c Release -o out ./FiapChallange.Lunai.WebApp
+Run ls
+RUN dotnet build -c Release -o out ./
 
 # Build da imagem
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine
