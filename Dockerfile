@@ -7,12 +7,11 @@ COPY FiapChallange.Lunai.Service/*.csproj ./FiapChallange.Lunai.Service/
 COPY FiapChallange.Lunai.InfraData/*.csproj ./FiapChallange.Lunai.InfraData/
 COPY FiapChallange.Lunai.Domain/*.csproj ./FiapChallange.Lunai.Domain/
 
-RUN dotnet restore ./FiapChallange.Lunai.WebApp/FiapChallange.Lunai.csproj
+RUN dotnet restore ./FiapChallange.Lunai.WebApp/
 
 # Build da aplicacao
 COPY . ./
-Run ls
-RUN dotnet build -c Release -o out ./
+RUN dotnet publish -c Release -o out ./FiapChallange.Lunai.WebApp
 
 # Build da imagem
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine
