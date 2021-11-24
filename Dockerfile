@@ -7,7 +7,7 @@ COPY FiapChallange.Lunai.Service/*.csproj ./FiapChallange.Lunai.Service/
 COPY FiapChallange.Lunai.InfraData/*.csproj ./FiapChallange.Lunai.InfraData/
 COPY FiapChallange.Lunai.Domain/*.csproj ./FiapChallange.Lunai.Domain/
 
-RUN dotnet restore ./FiapChallange.Lunai.WebApp/
+RUN dotnet restore ./FiapChallange.Lunai.WebApp/FiapChallange.Lunai.csproj
 
 # Build da aplicacao
 COPY . ./
