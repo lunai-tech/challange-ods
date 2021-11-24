@@ -28,4 +28,6 @@ Caso queira executar o projeto de maneira local, basta executar os comandos abai
 > dotnet restore
 > dotnet build
 > dotnet run --project ./FiapChallange.Lunai.WebApp/FiapChallange.Lunai.WebApp.csproj
+> Acessar http://localhost:5000
+
 ```
